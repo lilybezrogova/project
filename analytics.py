@@ -18,6 +18,11 @@ def top5_expensive(df): # Топ-5 самых дорогих позиций
     print(f"\n{GREEN}Топ-5 самых дорогих позиций:{RESET} \n\n{top5}")
     log_action(f"Пользователь запросил топ-5 самых дорогих позиций.")
 
+def top5_cheapest(df): # Топ-5 самых дешевых позиций
+    top5 = df.sort_values('Цена за единицу', ascending = True).head(5)
+    print(f"\n{GREEN}Топ-5 самых дешевых позиций:{RESET} \n\n{top5}")
+    log_action(f"Пользователь запросил топ-5 самых дешевых позиций.")
+
 def cnt_category(df): # Число товаров одной категории
     cnt = df.groupby("Категория")["Количество"].sum()
     print(f"\n{GREEN}Число товаров по категориям:{RESET} \n\n{cnt}.")

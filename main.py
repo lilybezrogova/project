@@ -1,7 +1,7 @@
 from data_init import df
 from product_ops import show_data, add_product, remove_product, update_cnt, update_price,  order_product
 from filter import fltr_category, fltr_warehouse, min_max_price_warehouse, show_category, filter_price
-from analytics import total_sum, avr_price, top5_expensive, cnt_category, cnt_warehouse
+from analytics import total_sum, avr_price, top5_expensive, top5_cheapest, cnt_category, cnt_warehouse
 from visualization import plot_warehouse_cnt, plot_total_t, plot_warehouse_price, plot_category
 from export import export_csv
 RED = "\033[31m"
@@ -77,8 +77,9 @@ def analytics_menu(df):
 1. Общая стоимость всех товаров
 2. Средняя цена по категориям
 3. Топ-5 самых дорогих позиций
-4. Число товаров одной категориям
-5. Число товаров на одном складе
+4. Топ-5 самых дешевых позиций
+5. Число товаров одной категориям
+6. Число товаров на одном складе
 {RED}0. Назад в главное меню{RESET}
 """)
         choice = input("Выбор: ").strip()
@@ -91,8 +92,10 @@ def analytics_menu(df):
         elif choice == "3":
             top5_expensive(df)
         elif choice == "4":
-            cnt_category(df)
+            top5_cheapest(df)
         elif choice == "5":
+            cnt_category(df)
+        elif choice == "6":
             cnt_warehouse(df)
         else:
             print(f"\n{RED}Некорректный ввод.{RESET}")
